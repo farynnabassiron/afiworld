@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="cute.png" type="image/x-icon">
+    <title>Gallery</title>
+    <style>
+        body {
+            background-image: url("brownn.jpg");
+            font-family: garamond, serif;
+            color: black;
+            text-align: center;
+        }
+        h1 {
+            color: black;
+        }
+        h1.main-heading {
+            font-family: garamond, serif;
+        }
+        .button {
+            background-color: black;
+            border: none;
+            color: floralwhite;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: peru;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .gallery img, .gallery video {
+            position: relative;
+            width: 300px;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid black; /* Add border here */
+        }
+
+        .gallery .video-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .gallery video:hover + .video-overlay {
+            display: block;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 80%; /* Adjust max-width as needed */
+            max-height: 80%; /* Adjust max-height as needed */
+            text-align: center;
+        }
+
+        .lightbox-content img, .lightbox-content video {
+            max-width: 100%;
+            max-height: 100%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #clock-container {
+            margin-top: 20px;
+            border: 3px solid black;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            background-color: floralwhite;
+            color: black;
+        }
+
+        #clock {
+            font-size: 24px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <center>
+        <h1>&hearts; DAFI'S GALLERY &hearts;</h1>
+        <div class="gallery">
+            <img src="dafii.jpeg" alt="Image 1" onclick="openLightbox('dafii.jpeg')">
+            <video src="afivideo.mp4" alt="Video" onclick="openLightbox('afivideo.mp4')"></video>
+            <div class="video-overlay">Video</div>
+            <img src="afii2.jpg" alt="Image 3" onclick="openLightbox('afii2.jpg')">
+            <video src="afi.jj.mp4" alt="Video" onclick="openLightbox('afi.jj.mp4')"></video>
+            <div class="video-overlay">Video</div>
+            <img src="afiuitm.jfif" alt="Image 5" onclick="openLightbox('afiuitm.jfif')">
+            <img src="afiwithdad.jfif" alt="Image 6" onclick="openLightbox('afiwithdad.jfif')">
+            <img src="afiwithmom.jfif" alt="Image 7" onclick="openLightbox('afiwithmom.jfif')">
+            <img src="afisch.jfif" alt="Image 8" onclick="openLightbox('afisch.jfif')">
+            <img src="4.jpg" alt="Image 9" onclick="openLightbox('4.jpg')">
+            <img src="5.jpg" alt="Image 10" onclick="openLightbox('5.jpg')">
+            <img src="2.jpg" alt="Image 11" onclick="openLightbox('2.jpg')">
+            <img src="7.jpg" alt="Image 12" onclick="openLightbox('7.jpg')">
+        </div>
+        <div>
+            <a href="index.html" target="_blank" class="button">Home</a>
+            <a href="education.html" target="_blank" class="button">Education</a>
+            <a href="experience.html" target="_blank" class="button">Experience</a>
+            <a href="contact.html" target="_blank" class="button">Contact</a>
+        </div>
+        <div id="clock-container">
+            <div id="clock"></div>
+        </div>
+    </center>
+
+    <!-- Lightbox HTML -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <div id="lightbox-media"></div>
+        </div>
+    </div>
+
+    <script>
+        function openLightbox(source) {
+            var lightbox = document.getElementById("lightbox");
+            var lightboxMedia = document.getElementById("lightbox-media");
+            var mediaElement;
+
+            if (source.endsWith(".mp4")) {
+                // Create video element
+                mediaElement = document.createElement("video");
+                mediaElement.src = source;
+                mediaElement.controls = true;
+                mediaElement.autoplay = true;
+                mediaElement.className = "lightbox-video";
+            } else {
+                // Create image element
+                mediaElement = document.createElement("img");
+                mediaElement.src = source;
+                mediaElement.alt = "lightbox-media";
+                mediaElement.className = "lightbox-image";
+            }
+
+            // Clear existing content in lightbox
+            lightboxMedia.innerHTML = "";
+
+            // Append media element to lightbox content
+            lightboxMedia.appendChild(mediaElement);
+
+            // Display lightbox
+            lightbox.style.display = "flex";
+        }
+
+        function closeLightbox() {
+            var lightbox = document.getElementById("lightbox");
+            var lightboxMedia = document.getElementById("lightbox-media");
+            // Clear lightbox content
+            lightboxMedia.innerHTML = "";
+            // Hide lightbox
+            lightbox.style.display = "none";
+        }
+
+        function updateClock() {
+            const clockElement = document.getElementById('clock');
+            const now = new Date();
+
+            // Convert to Malaysia time by adding 8 hours to UTC time
+            const malaysiaTime = new Date(now.getTime() + 0 * 60 * 60 * 1000);
+
+            const year = malaysiaTime.getFullYear();
+            const month = String(malaysiaTime.getMonth() + 1).padStart(2, '0');
+            const day = String(malaysiaTime.getDate()).padStart(2, '0');
+            const hours = String(malaysiaTime.getHours()).padStart(2, '0');
+            const minutes = String(malaysiaTime.getMinutes()).padStart(2, '0');
+            const seconds = String(malaysiaTime.getSeconds()).padStart(2, '0');
+
+            clockElement.textContent = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // initial call to display clock immediately
+    </script>
+</body>
+</html>

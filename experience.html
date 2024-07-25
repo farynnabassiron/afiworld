@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="cute.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: black;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+        }
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+        }
+        h1 {
+            color: black;
+            font-family: garamond, serif;
+            margin-top: 10px;
+        }
+        .rectangular-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .rectangular-box, .large-rectangular-box {
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 15px;
+            color: black;
+            width: 200px;
+            height: 280px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        .large-rectangular-box {
+            width: 600px;
+            height: auto;
+            margin-top: 5px;
+        }
+        .circular-box {
+            background-color: saddlebrown;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: floralwhite;
+        }
+        .rectangular-box img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 12px;
+        }
+        .button {
+            background-color: black;
+            border: none;
+            color: whitesmoke;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: black;
+        }
+        .links-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #clock {
+            font-size: 18px;
+            font-family: 'Courier New', Courier, monospace;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video id="video-background" autoplay muted loop>
+        <source src="airportvibe.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div id="clock"></div>
+    <h1>&hearts; DAFI'S EXPERIENCE &hearts;</h1>
+    <div class="rectangular-boxes">
+        <div class="rectangular-box">
+            <h3>GMART CONVENIENCE (Cashier) 2019</h3>
+            <p>Worked as a part-time worker at that convenience store while waiting to continue his study. From there, he learned to be a more responsible person as he worked as a cashier, managing transactions with customers, scanning goods, and ensuring pricing accuracy.</p>
+        </div>
+        <div class="rectangular-box">
+            <img src="GTR.jpg" alt="Image" width="300" height="350">
+        </div>
+        <div class="rectangular-box">
+            <h3>IMM TECHNOLOGY SDN.BERHAD (Slitter Part Operator) 2022-2023</h3>
+            <p>Monitored the machine from time to time and operated equipment to cut materials into slats of a set length and width. He also helped the slitter operator set up and complete the steel cutting and recoiling operation.</p>
+        </div>
+    </div>
+    <div class="large-rectangular-box">
+        <h3>Air Asia (GTR-Ground Team Red) 2023 till now</h3>
+        <p>He was placed at station Kuching and handling aviation.</p>
+    </div>
+ <div>
+            <a href="index.html" target="_blank" class="button">Home</a>
+            <a href="gallery.html" target="_blank" class="button">Gallery</a>
+            <a href="education.html" target="_blank" class="button">Education</a>
+            <a href="contact.html" target="_blank" class="button">Contact</a>
+        </div>
+       
+    <script>
+        function updateClock() {
+            const clockElement = document.getElementById('clock');
+            const now = new Date();
+
+            // Convert to Malaysia time by adding 8 hours to UTC time
+            const malaysiaTime = new Date(now.getTime() + 0 * 60 * 60 * 1000);
+
+            const year = malaysiaTime.getFullYear();
+            const month = String(malaysiaTime.getMonth() + 1).padStart(2, '0');
+            const day = String(malaysiaTime.getDate()).padStart(2, '0');
+            const hours = String(malaysiaTime.getHours()).padStart(2, '0');
+            const minutes = String(malaysiaTime.getMinutes()).padStart(2, '0');
+            const seconds = String(malaysiaTime.getSeconds()).padStart(2, '0');
+
+            clockElement.textContent = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // initial call to display clock immediately
+    </script>
+</body>
+</html>

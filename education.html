@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="cute.png" type="image/x-icon">
+    <title>Education</title>
+    <style>
+        body {
+            background-image: url("brownieee.jpg");
+            font-family: Arial, sans-serif;
+            color: floralwhite;
+            text-align: center;
+        }
+        h1 {
+            color: floralwhite;
+        }
+        h1.main-heading {
+            font-family: garamond, serif;
+        }
+        img {
+            border-radius: 35%;
+        }
+        .button {
+            background-color: navajowhite;
+            border: none;
+            color: saddlebrown;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: peru;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .box-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .box {
+            background-color: rgba(139, 69, 19, 0.8); /* Semi-transparent brown background */
+            border: 2px solid rgba(255, 255, 255, 0.5); /* Transparent white border */
+            padding: 15px;
+            color: floralwhite;
+            width: 330px;
+            height: 330px;
+            text-align: justify;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 12px;
+        }
+        .box p {
+            margin: 10px 0;
+            text-align: left;
+        }
+        .box h1 {
+            text-align: left;
+            font-family: georgia, serif;
+            margin: 0;
+        }
+        #clock {
+            font-size: 18px;
+            font-family: 'Courier New', Courier, monospace;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock"></div>
+    <h1 class="main-heading"><b>&hearts; DAFI'S EDUCATION SITE &hearts; </b></h1>
+    <div class="container">
+        <div class="box-container">
+            <div class="box biodata">
+                <h1>SPM (2018)</h1>
+                <p> 1A- 1B 1B+ 2C+ 1D 2E </p>
+            </div>
+            <div class="box about">
+                <span style='font-size:30px;'>&#129333;&#9917;&#9820;</span>
+                <h3>SMK BANDAR KUCHING 1</h3>
+                <p>*Used to be class leader on Form 3</p>
+                <p>*Once represented the school in a football competition.</p>
+                <p>*Got 2nd place in a chess competition.</p>
+            </div>
+        </div>
+        <div class="box-container">
+            <div class="box">
+                <h1>DIPLOMA</h1>
+                <h2>(2019-2021)</h2>
+                <p>Diploma in Information Management </p>
+                <p> CGPA : 3.16</p>
+            </div>
+            <div class="box">
+                <span style='font-size:30px;'>&#128218;&#128221;&#128187;</span>
+                <h3>UiTM KOTA SAMARAHAN 1 </h3>
+                <p>*Used to be classrep on semester 2</p>
+                <p>*As assistant project leader for outreach program on semester 5</p>
+                <p>*Dean list student on semester 2 & 4 </p>
+            </div>
+        </div>
+        <div>
+           <a href="index.html" target="_blank" class="button">Home</a>
+            <a href="gallery.html" target="_blank" class="button">Gallery</a>
+            <a href="experience.html" target="_blank" class="button">Experience</a>
+            <a href="contact.html" target="_blank" class="button">Contact</a>
+        </div>
+    </div>
+    <script>
+        function updateClock() {
+            const clockElement = document.getElementById('clock');
+            const now = new Date();
+
+            // Convert to Malaysia time by adding 8 hours to UTC time
+            const malaysiaTime = new Date(now.getTime() + 0 * 60 * 60 * 1000);
+
+            const year = malaysiaTime.getFullYear();
+            const month = String(malaysiaTime.getMonth() + 1).padStart(2, '0');
+            const day = String(malaysiaTime.getDate()).padStart(2, '0');
+            const hours = String(malaysiaTime.getHours()).padStart(2, '0');
+            const minutes = String(malaysiaTime.getMinutes()).padStart(2, '0');
+            const seconds = String(malaysiaTime.getSeconds()).padStart(2, '0');
+
+            clockElement.textContent = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // initial call to display clock immediately
+    </script>
+</body>
+</html>
